@@ -1,0 +1,8 @@
+body{
+    padding: 100px;
+}
+.jumbotron{
+    margin: 50px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px grey;
+}
