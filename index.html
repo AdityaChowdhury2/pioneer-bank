@@ -69,11 +69,8 @@
         function get_inputNumber(id) {
             const inputAmount = document.getElementById(id).value;
             const inputNumber = parseFloat(inputAmount);
-            return inputNumber;
-        }
-
-        function empty_input_field(id) {
             document.getElementById(id).value = "";
+            return inputNumber;
         }
         function update_span_text(id, changedNumber) {
             const currentAmount = document.getElementById(id).innerText;
@@ -96,7 +93,6 @@
             // console.log(depositAmountNumber);
             update_span_text('currentDeposit', depositAmountNumber);
             update_span_text('currentBalance', depositAmountNumber);
-            empty_input_field('deposit-amount');
         })
         
         // withdraw button event handler
@@ -105,7 +101,6 @@
             const withdrawAmountNumber = get_inputNumber("withdraw-amount");
             update_span_text('currentWithdraw', withdrawAmountNumber);
             update_span_text('currentBalance', -withdrawAmountNumber);
-            empty_input_field('withdraw-amount');
 
         })
     </script>
