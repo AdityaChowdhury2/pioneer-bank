@@ -16,19 +16,97 @@
         <h1 class="text-center">Welcome To Pioneer Bank</h1>
         <div class="jumbotron">
             <h4>Login</h4>
-            <input type="text" class="form-control" placeholder="Email">
+            <input type="text" class="form-control" placeholder="Email" required>
             <br>
             <input type="password" class="form-control" name="password
-            " id="" placeholder="Password">
+            " id="" placeholder="Password" required>
             <br>
             <button id="login-btn" class="btn btn-success">Enter</button>
         </div>
     </div>
+    <div id='transaction-area'>
+        <h1 class="text-center">Transaction Area</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="status deposit">
+                    <h5>Deposit</h5>
+                    <h2>$ <span id="currentDeposit">00</span> </h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="status withdraw">
+                    <h5>Withdraw</h5>
+                    <h2>$ <span id="currentWithdraw">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="status balance">
+                    <h5>Balance</h5>
+                    <h2>$ <span id="currentBalance">1240</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="transaction">
+                    <h4>Deposit</h4>
+                    <input id="deposit-amount" type="text" class="form-control"
+                        placeholder="$ amount you want to deposit"><br>
+                    <button id="deposit-btn" class="btn btn-success">Deposit</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="transaction">
+                    <h4>Withdraw</h4>
+                    <input id="withdraw-amount" type="text" class="form-control"
+                        placeholder="$ amount you want to withdraw"><br>
+                    <button id="withdraw-btn" class="btn btn-success">Withdraw</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
-        const loginBtn = document.getElementById('login-btn'); 
+        function get_inputNumber(id) {
+            const inputAmount = document.getElementById(id).value;
+            const inputNumber = parseFloat(inputAmount);
+            return inputNumber;
+        }
+
+        function empty_input_field(id) {
+            document.getElementById(id).value = "";
+        }
+        function update_span_text(id, changedNumber) {
+            const currentAmount = document.getElementById(id).innerText;
+            const currentAmountNumber = parseFloat(currentAmount);
+            const totalAmount = currentAmountNumber + changedNumber;
+            document.getElementById(id).innerText = totalAmount;        
+        }
+        //login button event handler
+        const loginBtn = document.getElementById('login-btn');
         loginBtn.addEventListener('click', function () {
             const loginArea = document.getElementById('login-area');
             loginArea.style.display = "none";
+            const transactionArea = document.getElementById('transaction-area');
+            transactionArea.style.display = "block";
+        })
+        // deposit button event handler
+        const depositBtn = document.getElementById('deposit-btn');
+        depositBtn.addEventListener('click', function () {
+            const depositAmountNumber = get_inputNumber('deposit-amount');
+            // console.log(depositAmountNumber);
+            update_span_text('currentDeposit', depositAmountNumber);
+            update_span_text('currentBalance', depositAmountNumber);
+            empty_input_field('deposit-amount');
+        })
+        
+        // withdraw button event handler
+        const withdrawBtn = document.getElementById('withdraw-btn');
+        withdrawBtn.addEventListener('click', function () {
+            const withdrawAmountNumber = get_inputNumber("withdraw-amount");
+            update_span_text('currentWithdraw', withdrawAmountNumber);
+            update_span_text('currentBalance', -withdrawAmountNumber);
+            empty_input_field('withdraw-amount');
+
         })
     </script>
 </body>
