@@ -76,7 +76,7 @@
             const currentAmount = document.getElementById(id).innerText;
             const currentAmountNumber = parseFloat(currentAmount);
             const totalAmount = currentAmountNumber + changedNumber;
-            document.getElementById(id).innerText = totalAmount;        
+            document.getElementById(id).innerText = totalAmount;
         }
         //login button event handler
         const loginBtn = document.getElementById('login-btn');
@@ -94,13 +94,13 @@
             update_span_text('currentDeposit', depositAmountNumber);
             update_span_text('currentBalance', depositAmountNumber);
         })
-        
+
         // withdraw button event handler
         const withdrawBtn = document.getElementById('withdraw-btn');
         withdrawBtn.addEventListener('click', function () {
             const withdrawAmountNumber = get_inputNumber("withdraw-amount");
             update_span_text('currentWithdraw', withdrawAmountNumber);
-            update_span_text('currentBalance', -withdrawAmountNumber);
+            update_span_text('currentBalance', -1 * withdrawAmountNumber);
 
         })
     </script>
